@@ -1,10 +1,14 @@
-import Image from "next/image";
+import Button from "./components/button";
+import Input from "./components/input";
 
 export default function Home() {
   return (
     <main>
       <div>
-        <p>This is text</p>
+        <div>
+          <Input labelFor="searchInput" labelText="Search" />
+          <Button type="button">Search</Button>
+        </div>
       </div>
     </main>
   );
