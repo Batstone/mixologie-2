@@ -7,8 +7,8 @@ import { useAppDispatch, useAppSelector } from "./lib/redux/hooks";
 import { fetchDrinkData } from "./lib/redux/slices/searchSlice";
 import Button from "./components/button";
 import Input from "./components/input";
-import DrinkCard from "./components/drinkCard";
 import Link from "next/link";
+import DrinkCard from "./components/DrinkCard";
 
 export default function Home() {
   const [searchTerm, updateSearchterm] = useState<string>("");
