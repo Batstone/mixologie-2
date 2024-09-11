@@ -52,7 +52,7 @@ export default function Home() {
           <ul>
             {data.map((drink, index) => (
               <li key={index}>
-                <Link href={""}>
+                <Link href={`/drink/${drink.strDrink.replace(/\s+/g, '-')}`}>
                   <DrinkCard drinkName={drink.strDrink} />
                 </Link>
               </li>

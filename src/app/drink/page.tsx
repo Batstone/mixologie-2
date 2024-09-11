@@ -1,4 +1,4 @@
-export default function DrinkPage() {
+export default function Drink() {
     return (
         <h1>Drink Page</h1>
     )
