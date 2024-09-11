@@ -1,21 +1,24 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import Button from "./components/button";
-import Input from "./components/input";
 
-import { useAppDispatch } from "./lib/redux/hooks";
+import { useAppDispatch, useAppSelector } from "./lib/redux/hooks";
 
 import { fetchDrinkData } from "./lib/redux/slices/searchSlice";
+import Button from "./components/button";
+import Input from "./components/input";
+import DrinkCard from "./components/drinkCard";
+import Link from "next/link";
 
 export default function Home() {
   const [searchTerm, updateSearchterm] = useState<string>("");
 
   const dispatch = useAppDispatch();
 
+  const { data, loading, error } = useAppSelector((state) => state.drink);
+
   const handleSubmit = function (e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("serachTerm", searchTerm);
     if (searchTerm.trim()) {
       dispatch(fetchDrinkData(searchTerm));
     }
@@ -39,6 +42,24 @@ export default function Home() {
           </fieldset>
         </form>
       </div>
+
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+
+      {data && (
+        <div>
+          <h2>Search Results:</h2>
+          <ul>
+            {data.map((drink, index) => (
+              <li key={index}>
+                <Link href={""}>
+                  <DrinkCard drinkName={drink.strDrink} />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </main>
   );
 }
