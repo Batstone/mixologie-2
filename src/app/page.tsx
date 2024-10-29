@@ -4,11 +4,12 @@ import { FormEvent, useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "./lib/redux/hooks";
 
-import { fetchDrinkData } from "./lib/redux/slices/searchSlice";
-import Button from "./components/button";
-import Input from "./components/input";
+import { fetchDrinkData } from "./lib/redux/slices/drinkSlice";
+
 import Link from "next/link";
 import DrinkCard from "./components/DrinkCard";
+import Input from "./components/Input";
+import Button from "./components/Button";
 
 export default function Home() {
   const [searchTerm, updateSearchterm] = useState<string>("");
@@ -52,8 +53,8 @@ export default function Home() {
           <ul>
             {data.map((drink, index) => (
               <li key={index}>
-                <Link href={`/drink/${drink.strDrink.replace(/\s+/g, '-')}`}>
-                  <DrinkCard drinkName={drink.strDrink} />
+                <Link href={`/drink/${index}`}>
+                  <DrinkCard drinkName={drink.name} />
                 </Link>
               </li>
             ))}
