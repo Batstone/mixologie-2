@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "./lib/redux/hooks";
 
-import { fetchDrinkData } from "./lib/redux/slices/drinkSlice";
+import { fetchDrinksData } from "./lib/redux/slices/drinkSlice";
 
 import Link from "next/link";
 import DrinkCard from "./components/DrinkCard";
@@ -21,7 +21,7 @@ export default function Home() {
   const handleSubmit = function (e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (searchTerm.trim()) {
-      dispatch(fetchDrinkData(searchTerm));
+      dispatch(fetchDrinksData(searchTerm));
     }
   };
 
@@ -51,9 +51,9 @@ export default function Home() {
         <div>
           <h2>Search Results:</h2>
           <ul>
-            {data.map((drink, index) => (
-              <li key={index}>
-                <Link href={`/drink/${index}`}>
+            {data.map((drink) => (
+              <li key={drink.id}>
+                <Link href={`/drink/${drink.id}`}>
                   <DrinkCard drinkName={drink.name} />
                 </Link>
               </li>

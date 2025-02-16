@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { fetchDrinkData } from "../thunks/fetchDrinkData";
+import { fetchDrinksData, fetchDrinkDetails } from "../thunks/fetchDrinksData";
 
-interface Drink {
+export interface Drink {
   name: string;
   instructions: string;
   glass: string;
+  id: string;
 }
 
 // Define a type for the slice state
 interface DrinkState {
-  data: Array<Drink>;
+  data: Drink[];
   loading: boolean;
   error: string | null;
   selectedDrink: Drink | null;
@@ -31,16 +32,18 @@ export const drinkSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchDrinkData.pending, (state) => {
+      .addCase(fetchDrinksData.pending, (state) => {
         console.log("loading");
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchDrinkData.fulfilled, (state, action) => {
+      .addCase(fetchDrinksData.fulfilled, (state, action) => {
+        console.log("fetch drinksss");
         const drinks: Drink[] = action.payload.drinks.map((drink: any) => ({
           name: drink.strDrink,
           instructions: drink.strInstructions,
           glass: drink.strGlass,
+          id: drink.idDrink,
         }));
 
         console.log("fulfilled");
@@ -49,13 +52,40 @@ export const drinkSlice = createSlice({
         state.data = drinks;
         console.log("state", state.data);
       })
-      .addCase(fetchDrinkData.rejected, (state, action) => {
+      .addCase(fetchDrinksData.rejected, (state, action) => {
         console.log("rejected");
 
         state.loading = false;
         state.error = action.payload?.error || "Something went wrong";
+        console.log("error", state.error);
+      })
+      .addCase(fetchDrinkDetails.pending, (state) => {
+        console.log("details loading");
+        state.loading = true;
+        state.error = null;
+      })
+
+      .addCase(fetchDrinkDetails.fulfilled, (state, action) => {
+        console.log("details fulfilled");
+        const drinks: Drink[] = action.payload.drinks.map((drink: any) => ({
+          name: drink.strDrink,
+          instructions: drink.strInstructions,
+          glass: drink.strGlass,
+          id: drink.idDrink,
+        }));
+
+        state.loading = false;
+        state.data = drinks;
+        console.log("state", state.data);
+      })
+      .addCase(fetchDrinkDetails.rejected, (state, action) => {
+        console.log("details rejected");
+
+        state.loading = false;
+        state.error = action.payload?.error || "Something went wrong";
+        console.log("error", state.error);
       });
   },
 });
 
-export { fetchDrinkData };
+export { fetchDrinksData };

@@ -4,6 +4,7 @@ interface DrinkCardProps {
   // ingredients: string[];
   instructions: string;
   // image: string;
+  id: string;
 }
 
 export default function DrinkInstructions({ drinkName, glass, instructions }: DrinkCardProps) {
