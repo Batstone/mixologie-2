@@ -1,7 +1,6 @@
 "use client";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 
 import { Provider } from "react-redux";
 import { store } from "./lib/redux/store";
@@ -11,7 +10,7 @@ import "./globals.css";
 /*
 export const metadata: Metadata = {
   title: "Mixologie",
-  description: "Craft the perfect Cocktail",
+  description: "Craft the Perfect Cocktail",
 };
 */
 

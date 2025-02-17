@@ -2,8 +2,10 @@
 
 import DrinkInstructions from "@/app/components/DrinkInstructions";
 import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
-import { fetchDrinkDetails } from "@/app/lib/redux/thunks/fetchDrinksData";
+import { fetchDrinksData } from "@/app/lib/redux/thunks/fetchDrinksData";
 import { useEffect, useState } from "react";
+
+import { ID } from "@/constants";
 
 interface DrinkPageProps {
   params: {
@@ -20,7 +22,7 @@ export default function DrinkPage({ params }: DrinkPageProps) {
 
   function saveToLocalStorage(drink: string) {
     localStorage.setItem("id", id);
-    setStoredDrink(drink); // Ensure state is also updated
+    setStoredDrink(drink);
   }
 
   localStorage.setItem("Drink", id);
@@ -40,9 +42,9 @@ export default function DrinkPage({ params }: DrinkPageProps) {
         saveToLocalStorage(currentDrinkId);
       }
     } else if (drinkFromStorage && !selectedDrink) {
-      dispatch(fetchDrinkDetails(id));
+      dispatch(fetchDrinksData({ searchType: ID, searchTerm: id }));
     }
-  }, [data, dispatch]);
+  }, [dispatch]);
 
   // CHange selected drink below to just user the userState value that I will add
   const selectedDrink = data?.find((drink) => drink.id === id);
