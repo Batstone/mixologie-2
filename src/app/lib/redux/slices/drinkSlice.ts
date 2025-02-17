@@ -36,7 +36,7 @@ export const drinkSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDrinksData.fulfilled, (state, action) => {
-        console.log("fetch drinksss");
+        console.log("fetch drinksss", action.payload);
         const drinks: Drink[] = action.payload.drinks.map((drink: any) => ({
           name: drink.strDrink,
           instructions: drink.strInstructions,
