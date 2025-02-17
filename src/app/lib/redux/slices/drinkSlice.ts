@@ -14,14 +14,12 @@ interface DrinkState {
   data: Drink[];
   loading: boolean;
   error: string | null;
-  selectedDrink: Drink | null;
 }
 
 const initialState: DrinkState = {
   data: [],
   loading: false,
   error: null,
-  selectedDrink: null,
 };
 
 export const drinkSlice = createSlice({

@@ -18,14 +18,11 @@ export default function DrinkPage({ params }: DrinkPageProps) {
 
   const [storedDrink, setStoredDrink] = useState<string | null>(null);
 
-  console.log("DATA", data);
-  console.log("id here", id);
-
   function saveToLocalStorage(drink: string) {
     localStorage.setItem("id", id);
     setStoredDrink(drink); // Ensure state is also updated
   }
-  console.log("id here", id);
+
   localStorage.setItem("Drink", id);
 
   // Set the selected drink. use the ID
@@ -35,23 +32,19 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     const selectedDrink = data?.find((drink) => drink.id === id);
 
     if (!drinkFromStorage && selectedDrink) {
-      console.log("Saving new drink to localStorage");
       const currentDrinkId = selectedDrink?.id;
       saveToLocalStorage(currentDrinkId);
     } else if (drinkFromStorage && selectedDrink) {
       if (drinkFromStorage !== selectedDrink.id) {
-        console.log("Updating stored drink in localStorage");
         const currentDrinkId = selectedDrink?.id;
         saveToLocalStorage(currentDrinkId);
       }
     } else if (drinkFromStorage && !selectedDrink) {
-      console.log("Fetching new drink from API:", drinkFromStorage);
       dispatch(fetchDrinkDetails(id));
     }
-  }, [data, dispatch]); // Removed storedDrink from dependencies
+  }, [data, dispatch]);
 
-  console.log("Final Stored Drink:", storedDrink);
-
+  // CHange selected drink below to just user the userState value that I will add
   const selectedDrink = data?.find((drink) => drink.id === id);
 
   return (
