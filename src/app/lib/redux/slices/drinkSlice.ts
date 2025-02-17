@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { fetchDrinksData, fetchDrinkDetails } from "../thunks/fetchDrinksData";
+import { fetchDrinksData } from "../thunks/fetchDrinksData";
 
 export interface Drink {
   name: string;
@@ -56,7 +56,8 @@ export const drinkSlice = createSlice({
         state.loading = false;
         state.error = action.payload?.error || "Something went wrong";
         console.log("error", state.error);
-      })
+      });
+    /*
       .addCase(fetchDrinkDetails.pending, (state) => {
         console.log("details loading");
         state.loading = true;
@@ -83,6 +84,7 @@ export const drinkSlice = createSlice({
         state.error = action.payload?.error || "Something went wrong";
         console.log("error", state.error);
       });
+      */
   },
 });
 
