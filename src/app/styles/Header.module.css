@@ -1,0 +1,29 @@
+.header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-block-start: 2rem;
+}
+
+.header__logo-container {
+  position: relative;
+  width: 17rem;
+  height: 7rem;
+}
+
+.header__nav {
+  justify-self: end;
+}
+
+.header__nav-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-block-start: 1rem;
+  gap: 4rem;
+}
+
+.header__nav-link {
+  color: var(--color-accent);
+  font-size: 1.5rem;
+  text-decoration: none;
+}

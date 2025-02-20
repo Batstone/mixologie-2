@@ -1,0 +1,17 @@
+.home__hero {
+  background: rgba(0, 0, 0, 0.62);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(13.1px);
+  -webkit-backdrop-filter: blur(13.1px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding-inline: 2em;
+  padding-block: 3em;
+  position: relative;
+  bottom: -50%;
+}
+
+.home__sub-heading {
+  text-align: center;
+  font-size: 1.7rem;
+}

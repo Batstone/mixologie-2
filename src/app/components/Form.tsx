@@ -8,11 +8,19 @@ import Button from "./Button";
 import { searchTypes } from "../../constants";
 import { fetchDrinksData } from "../lib/redux/thunks/fetchDrinksData";
 
+import styles from "../styles/Form.module.css";
+
 export default function Form() {
   const dispatch = useAppDispatch();
 
   const [searchType, updateSearchType] = useState<string>(searchTypes[0]);
+  const [placeholderText, updatePlaceholderText] = useState<string>("Enter Cocktail Name");
   const [searchTerm, updateSearchterm] = useState<string>("");
+
+  const handleSearchTypeChange = function (value: string) {
+    updateSearchType(searchTypes[0]);
+    updatePlaceholderText(value === "Cocktail" ? "Enter Cocktail Name" : "Enter Ingredient Name");
+  };
 
   const handleSubmit = function (e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,28 +30,37 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <fieldset>
-        <legend>Search for Cocktail or Ingredient</legend>
-        <Select
-          labelFor="selectInput"
-          labelText="Search By:"
-          id="selectInput"
-          values={searchTypes}
-          onChange={(e) => {
-            updateSearchType(e.target.value);
-          }}
-        />
-        <Input
-          labelFor="searchInput"
-          labelText="Cocktail"
-          id="searchInput"
-          placeholder="Enter Cocktail Name or Ingredient"
-          type="text"
-          value={searchTerm}
-          onChange={(e) => updateSearchterm(e.target.value)}
-        />
-        <Button type="submit">Search</Button>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <fieldset className={styles["form__fieldset"]}>
+        <legend className="sr-only">Search for Cocktail or Ingredient</legend>
+        <div className={styles.form__element}>
+          <Select
+            labelFor="selectInput"
+            labelText="Search By:"
+            id="selectInput"
+            values={searchTypes}
+            className={styles.form__select}
+            onChange={(e) => {
+              handleSearchTypeChange(e.target.value);
+            }}
+          />
+        </div>
+        <div className={styles.form__element}>
+          <Input
+            labelFor="searchInput"
+            labelText="Cocktail"
+            id="searchInput"
+            placeholder={placeholderText}
+            type="text"
+            value={searchTerm}
+            className={styles.form__input}
+            onChange={(e) => updateSearchterm(e.target.value)}
+          />
+        </div>
+
+        <Button type="submit" className={styles.form__button}>
+          Find Cocktail
+        </Button>
       </fieldset>
     </form>
   );

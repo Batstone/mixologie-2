@@ -1,0 +1,38 @@
+.form {
+  margin-block-start: 1rem;
+}
+
+.form__select,
+.form__input {
+  width: 100%;
+  margin-block-start: 0.5rem;
+}
+
+.form__element,
+.form__button {
+  margin-block-start: 1em;
+}
+
+.form__element label {
+  font-size: 1.5rem;
+  color: var(--color-accent);
+}
+
+.form__button {
+  display: block;
+  margin-inline: auto;
+  background-color: var(--color-secondary-dark);
+  color: var(--color-primary);
+  border-color: var(--color-accent);
+  padding-block: 1em;
+  padding-inline: 2em;
+  border-radius: 0.5em;
+  margin-block-start: 2rem;
+  border-color: var(--color-accent);
+  font-size: 1.2rem;
+}
+
+.form__button:hover {
+  background-color: var(--color-secondary-accent);
+  cursor: pointer;
+}
