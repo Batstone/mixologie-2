@@ -6,7 +6,7 @@ import styles from "../styles/Header.module.css";
 export default function Header() {
   return (
     <header className={`${styles.header}`}>
-      <div className={styles["header__logo-container"]}>
+      <div className={`${styles["header__logo-container"]}`}>
         <h1>
           <Image src="/images/logo.png" alt="Logo" fill />
         </h1>

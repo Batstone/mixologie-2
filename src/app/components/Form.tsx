@@ -18,8 +18,9 @@ export default function Form() {
   const [searchTerm, updateSearchterm] = useState<string>("");
 
   const handleSearchTypeChange = function (value: string) {
-    updateSearchType(searchTypes[0]);
-    updatePlaceholderText(value === "Cocktail" ? "Enter Cocktail Name" : "Enter Ingredient Name");
+    console.log("change", value);
+    updateSearchType(value);
+    updatePlaceholderText(value === "Name" ? "Enter Cocktail Name" : "Enter Ingredient Name");
   };
 
   const handleSubmit = function (e: FormEvent<HTMLFormElement>) {
@@ -48,7 +49,7 @@ export default function Form() {
         <div className={styles.form__element}>
           <Input
             labelFor="searchInput"
-            labelText="Cocktail"
+            labelText={`${searchType}:`}
             id="searchInput"
             placeholder={placeholderText}
             type="text"

@@ -7,6 +7,7 @@ export interface Drink {
   instructions: string;
   glass: string;
   id: string;
+  img: string;
 }
 
 // Define a type for the slice state
@@ -42,6 +43,7 @@ export const drinkSlice = createSlice({
           instructions: drink.strInstructions,
           glass: drink.strGlass,
           id: drink.idDrink,
+          img: drink.strDrinkThumb,
         }));
 
         console.log("fulfilled");

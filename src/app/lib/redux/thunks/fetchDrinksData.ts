@@ -12,9 +12,6 @@ export const fetchDrinksData = createAsyncThunk<
   try {
     let url: string | undefined;
 
-    console.log("URL check", API_NAME_URL, API_INGREDIENT_URL, API_ID_URL);
-    console.log("searchType", searchType, "Search Term", searchTerm);
-
     if (searchType === NAME) {
       url = API_NAME_URL;
     } else if (searchType === INGREDIENT) {

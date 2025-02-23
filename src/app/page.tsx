@@ -1,7 +1,6 @@
 "use client";
 
 import { useAppSelector } from "./lib/redux/hooks";
-import Link from "next/link";
 
 import Header from "./components/Header";
 import DrinkCard from "./components/DrinkCard";
@@ -23,19 +22,17 @@ export default function Home() {
             <Form />
           </div>
         </div>
-
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
-
         {data.length !== 0 && (
           <div>
             <h2>Search Results:</h2>
-            <ul>
+            <ul className={styles.home__list}>
               {data.map((drink) => (
-                <li key={drink.id}>
-                  <Link href={`/drink/${drink.id}`}>
-                    <DrinkCard drinkName={drink.name} />
-                  </Link>
+                <li key={drink.id} className={styles["home__list-item"]}>
+                  <div className={styles.home__drink}>
+                    <DrinkCard drinkName={drink.name} drinkImage={drink.img} drinkId={drink.id} />
+                  </div>
                 </li>
               ))}
             </ul>

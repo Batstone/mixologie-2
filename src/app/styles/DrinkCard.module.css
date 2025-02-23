@@ -1,0 +1,67 @@
+.drink__card {
+  display: block;
+  background: rgba(0, 0, 0, 0.62);
+  border-radius: 1rem;
+  box-shadow: 0 0.25em 1.875em rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.1px);
+  -webkit-backdrop-filter: blur(3.1px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding-inline: 2em;
+  padding-block-start: 1.5em;
+  padding-block-end: 2em;
+  text-decoration: none;
+}
+
+.drink__card:hover p,
+.drink__card:focus p,
+.drink__card:hover h2,
+.drink__card:focus h2 {
+  text-decoration: underline;
+}
+
+.drink__card-container {
+  position: relative;
+  bottom: 0;
+  transition: bottom 0.2s ease-in-out; /* Add smooth transition */
+}
+
+.drink__title {
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.drink__image {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  margin-block-start: 1em;
+  border-radius: 1em;
+}
+
+.drink__image img {
+  border-radius: 1em;
+}
+
+.drink__card-view {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3em;
+  position: relative;
+  color: var(--color-accent);
+  top: 6%;
+  left: 0;
+  opacity: 0;
+  transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.drink__card-view svg {
+  fill: var(--color-accent);
+  height: 1.563rem;
+  width: 1.563rem;
+}
+
+.drink__card:hover .drink__card-view,
+.drink__card:focus .drink__card-view {
+  opacity: 1;
+  left: 18%;
+}

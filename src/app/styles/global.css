@@ -81,6 +81,7 @@ h6 {
 
 ul {
   padding: 0;
+  list-style-type: none;
 }
 
 a {
@@ -151,8 +152,26 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: 50%;
 }
 
 *:focus {
   outline: 2px dotted var(--color-primary);
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: var(--color-secondary-dark);
+  color: var(--color-accent);
+  width: 100%;
+  text-align: center;
+  padding-block: 1.5em;
+}
+
+footer a {
+  display: block;
+  color: var(--color-primary);
+  text-decoration: none;
+  margin-block-start: 0.3rem;
 }
