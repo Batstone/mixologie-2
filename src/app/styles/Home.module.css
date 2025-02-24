@@ -15,7 +15,15 @@
   font-size: 1.7rem;
 }
 
+.home__search-results-title {
+  margin-block-start: 3rem;
+  margin-inline-start: 2rem;
+}
+
 .home__list {
   display: grid;
-  justify-items: center;
+  justify-content: center;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 275px));
+  margin-block-start: 3rem;
 }

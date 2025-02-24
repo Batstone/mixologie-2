@@ -23,16 +23,16 @@ export default function Home() {
           </div>
         </div>
         {loading && <p>Loading...</p>}
+
         {error && <p>Error: {error}</p>}
+
         {data.length !== 0 && (
           <div>
-            <h2>Search Results:</h2>
+            <h2 className={styles["home__search-results-title"]}>Search Results ({data.length}):</h2>
             <ul className={styles.home__list}>
               {data.map((drink) => (
-                <li key={drink.id} className={styles["home__list-item"]}>
-                  <div className={styles.home__drink}>
-                    <DrinkCard drinkName={drink.name} drinkImage={drink.img} drinkId={drink.id} />
-                  </div>
+                <li key={drink.id}>
+                  <DrinkCard drinkName={drink.name} drinkImage={drink.img} drinkId={drink.id} />
                 </li>
               ))}
             </ul>
