@@ -27,7 +27,7 @@ export default function Home() {
         {error && <p>Error: {error}</p>}
 
         {data.length !== 0 && (
-          <div>
+          <div className={styles["home__search-results"]}>
             <h2 className={styles["home__search-results-title"]}>Search Results ({data.length}):</h2>
             <ul className={styles.home__list}>
               {data.map((drink) => (

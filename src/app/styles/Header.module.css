@@ -10,6 +10,20 @@
   height: 7rem;
 }
 
+.header__logo-container::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  background: var(--color-accent);
+  top: 80%;
+  left: 20%;
+  width: 60%;
+  height: 30%;
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.4;
+}
+
 .header__nav {
   justify-self: center;
 }

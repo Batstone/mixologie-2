@@ -16,6 +16,7 @@
 }
 
 .home__search-results-title {
+  font-size: 1.8rem;
   margin-block-start: 3rem;
   margin-inline-start: 2rem;
 }

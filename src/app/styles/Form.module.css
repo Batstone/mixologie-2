@@ -22,17 +22,16 @@
   position: relative;
   display: block;
   margin-inline: auto;
-  background-color: var(--color-secondary-dark);
-  color: var(--color-primary);
-  border: var(--color-accent) 0.125em solid;
-  box-shadow: inset 0 0 0.8em 0 var(--color-accent), 0 0 0.5em 0 var(--color-accent);
+  font-size: 1.2rem;
+  font-family: var(--font-secondary);
+  letter-spacing: 0.04em;
+  background-color: var(--color-accent);
+  color: var(--color-secondary-dark);
+  border: none;
   padding-block: 1em;
   padding-inline: 2em;
   border-radius: 0.5em;
   margin-block-start: 3rem;
-  border-color: var(--color-accent);
-  font-size: 1.4rem;
-  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
 }
 
 .form__button:hover,
@@ -41,38 +40,4 @@
   cursor: pointer;
   color: var(--color-secondary-dark);
   text-shadow: none;
-}
-
-.form__button::before {
-  pointer-events: none;
-  content: "";
-  position: absolute;
-  background: var(--color-accent);
-  top: 80%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
-  filter: blur(1em);
-  opacity: 0.3;
-}
-
-.neon-button::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0 0 2em 0.5em var(--color-accent);
-  opacity: 0;
-  background-color: var(--color-accent);
-  z-index: -1;
-  transition: opacity 100ms linear;
-}
-
-.form__button:hover::before,
-.form__button:hover::after {
-  opacity: 0.5;
 }
