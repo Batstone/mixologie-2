@@ -1,0 +1,7 @@
+.drink-list {
+  display: grid;
+  justify-content: center;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 275px));
+  margin-block-start: 3rem;
+}
