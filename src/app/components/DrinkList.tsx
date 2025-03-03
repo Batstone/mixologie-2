@@ -14,36 +14,40 @@ interface DrinkListProps {
 export default function DrinkList({ drinks }: DrinkListProps) {
   const [currentPage, setCurrentPage] = useState(1);
 
-  if (drinks.length > 10) {
-    const indexOfLastDrink = currentPage * 10;
-    const indexOfFirstDrink = indexOfLastDrink - 10;
-    const currentDrinks = drinks.slice(indexOfFirstDrink, indexOfLastDrink);
-
-    function handlePageChange(page: number) {
-      setCurrentPage(page);
-    }
-
-    return (
-      <>
-        <ul className={styles["drink-list"]}>
-          {currentDrinks.map((drink) => (
-            <li key={drink.id}>
-              <DrinkCard drinkName={drink.name} drinkImage={drink.img} drinkId={drink.id} />
-            </li>
-          ))}
-        </ul>
-        <Pager total={drinks.length} currentPage={currentPage} changePage={handlePageChange} />
-      </>
-    );
+  function handlePageChange(page: number) {
+    setCurrentPage(page);
   }
 
-  return (
+  const getPagedDrinks = () => {
+    if (drinks.length <= 10) return drinks;
+
+    const indexOfLastDrink = currentPage * 10;
+    const indexOfFirstDrink = indexOfLastDrink - 10;
+    return drinks.slice(indexOfFirstDrink, indexOfLastDrink);
+  };
+
+  const numberOfPages = Math.ceil(drinks.length / 10);
+
+  const renderDrinkList = (drinkList: typeof drinks) => (
     <ul className={styles["drink-list"]}>
-      {drinks.map((drink) => (
+      {drinkList.map((drink) => (
         <li key={drink.id}>
           <DrinkCard drinkName={drink.name} drinkImage={drink.img} drinkId={drink.id} />
         </li>
       ))}
     </ul>
+  );
+
+  return (
+    <>
+      {drinks.length > 10 && (
+        <>
+          {renderDrinkList(getPagedDrinks())}
+          <Pager numberOfPages={numberOfPages} currentPage={currentPage} changePage={handlePageChange} />
+        </>
+      )}
+
+      {drinks.length <= 10 && renderDrinkList(drinks)}
+    </>
   );
 }
