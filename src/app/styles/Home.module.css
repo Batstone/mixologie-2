@@ -16,14 +16,7 @@
 }
 
 .home__search-results-title {
+  font-size: 1.8rem;
   margin-block-start: 3rem;
   margin-inline-start: 2rem;
-}
-
-.home__list {
-  display: grid;
-  justify-content: center;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 275px));
-  margin-block-start: 3rem;
 }

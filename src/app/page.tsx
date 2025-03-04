@@ -3,8 +3,8 @@
 import { useAppSelector } from "./lib/redux/hooks";
 
 import Header from "./components/Header";
-import DrinkCard from "./components/DrinkCard";
 import Form from "./components/Form";
+import DrinkList from "./components/DrinkList";
 import Footer from "./components/Footer";
 
 import styles from "./styles/Home.module.css";
@@ -27,15 +27,9 @@ export default function Home() {
         {error && <p>Error: {error}</p>}
 
         {data.length !== 0 && (
-          <div>
+          <div className={styles["home__search-results"]}>
             <h2 className={styles["home__search-results-title"]}>Search Results ({data.length}):</h2>
-            <ul className={styles.home__list}>
-              {data.map((drink) => (
-                <li key={drink.id}>
-                  <DrinkCard drinkName={drink.name} drinkImage={drink.img} drinkId={drink.id} />
-                </li>
-              ))}
-            </ul>
+            <DrinkList drinks={data} />
           </div>
         )}
       </main>

@@ -19,6 +19,11 @@
   text-decoration: underline;
 }
 
+.drink__card:hover img,
+.drink__card:focus img {
+  transform: scale(1.05);
+}
+
 .drink__card-container {
   position: relative;
   bottom: 0;
@@ -42,6 +47,7 @@
 
 .drink__image img {
   border-radius: 1em;
+  transition: transform 0.3s ease-in-out;
 }
 
 .drink__card-view {
