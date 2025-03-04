@@ -27,8 +27,6 @@ export default function DrinkPage({ params }: DrinkPageProps) {
 
   localStorage.setItem("Drink", id);
 
-  // Set the selected drink. use the ID
-
   useEffect(() => {
     const drinkFromStorage = localStorage.getItem("id");
     const selectedDrink = data?.find((drink) => drink.id === id);

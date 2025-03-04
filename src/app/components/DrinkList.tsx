@@ -6,6 +6,7 @@ import Pager from "./Pager";
 import { Drink } from "../lib/redux/slices/drinkSlice";
 
 import styles from "../styles/DrinkList.module.css";
+import { current } from "@reduxjs/toolkit";
 
 interface DrinkListProps {
   drinks: Drink[];
