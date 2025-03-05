@@ -4,6 +4,7 @@ import DrinkCard from "./DrinkCard";
 import Pager from "./Pager";
 
 import { Drink } from "../lib/redux/slices/drinkSlice";
+import { MINIMUM_PAGE_LENGTH } from "@/constants";
 
 import styles from "../styles/DrinkList.module.css";
 import { current } from "@reduxjs/toolkit";
@@ -20,14 +21,15 @@ export default function DrinkList({ drinks }: DrinkListProps) {
   }
 
   const getPagedDrinks = () => {
-    if (drinks.length <= 10) return drinks;
+    if (drinks.length <= MINIMUM_PAGE_LENGTH) return drinks;
 
-    const indexOfLastDrink = currentPage * 10;
-    const indexOfFirstDrink = indexOfLastDrink - 10;
+    const indexOfLastDrink = currentPage * MINIMUM_PAGE_LENGTH;
+    const indexOfFirstDrink = indexOfLastDrink - MINIMUM_PAGE_LENGTH;
+
     return drinks.slice(indexOfFirstDrink, indexOfLastDrink);
   };
 
-  const numberOfPages = Math.ceil(drinks.length / 10);
+  const numberOfPages = Math.ceil(drinks.length / MINIMUM_PAGE_LENGTH);
 
   const renderDrinkList = (drinkList: typeof drinks) => (
     <ul className={styles["drink-list"]}>
@@ -41,14 +43,14 @@ export default function DrinkList({ drinks }: DrinkListProps) {
 
   return (
     <>
-      {drinks.length > 10 && (
+      {drinks.length > MINIMUM_PAGE_LENGTH && (
         <>
           {renderDrinkList(getPagedDrinks())}
           <Pager numberOfPages={numberOfPages} currentPage={currentPage} changePage={handlePageChange} />
         </>
       )}
 
-      {drinks.length <= 10 && renderDrinkList(drinks)}
+      {drinks.length <= MINIMUM_PAGE_LENGTH && renderDrinkList(drinks)}
     </>
   );
 }
