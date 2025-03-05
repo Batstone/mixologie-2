@@ -8,6 +8,8 @@ export interface Drink {
   glass: string;
   id: string;
   img: string;
+  ingredients: string[];
+  ingredientsAmount: string[];
 }
 
 // Define a type for the slice state
@@ -38,13 +40,25 @@ export const drinkSlice = createSlice({
       })
       .addCase(fetchDrinksData.fulfilled, (state, action) => {
         console.log("fetch drinksss", action.payload);
-        const drinks: Drink[] = action.payload.drinks.map((drink: any) => ({
-          name: drink.strDrink,
-          instructions: drink.strInstructions,
-          glass: drink.strGlass,
-          id: drink.idDrink,
-          img: drink.strDrinkThumb,
-        }));
+
+        const drinks: Drink[] = action.payload.drinks.map((drink: any) => {
+          const ingredients = Object.keys(drink)
+            .filter((key) => key.startsWith("strIngredient") && drink[key] !== null)
+            .map((key) => drink[key]);
+          const ingredientsAmount = Object.keys(drink)
+            .filter((key) => key.startsWith("strMeasure") && drink[key] !== null)
+            .map((key) => drink[key]);
+
+          return {
+            name: drink.strDrink,
+            instructions: drink.strInstructions,
+            glass: drink.strGlass,
+            id: drink.idDrink,
+            img: drink.strDrinkThumb,
+            ingredients,
+            ingredientsAmount,
+          };
+        });
 
         console.log("fulfilled");
 
