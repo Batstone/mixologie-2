@@ -37,7 +37,7 @@ export const drinkSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDrinksData.fulfilled, (state, action) => {
-        console.log("ID Search?", action.payload.drinks);
+        console.log("ID Search SLICE", action.payload.drinks);
         const drinks: Drink[] = action.payload.drinks.map((drink: any) => {
           const ingredients = Object.keys(drink)
             .filter((key) => key.startsWith("strIngredient") && drink[key] !== null)

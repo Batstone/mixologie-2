@@ -1,6 +1,5 @@
 "use client";
 
-import DrinkInstructions from "@/app/components/DrinkInstructions";
 import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
 import { fetchDrinksData } from "@/app/lib/redux/thunks/fetchDrinksData";
 import { useEffect, useState } from "react";
@@ -11,6 +10,7 @@ import { ID, DRINK } from "@/constants";
 import Header from "@/app/components/Header";
 
 import styles from "../../styles/DrinkPage.module.css";
+import Link from "next/link";
 
 interface DrinkPageProps {
   params: {
@@ -30,12 +30,9 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     setStoredDrink(drink);
   }
 
-  localStorage.setItem(DRINK, id);
-
   useEffect(() => {
     const drinkFromStorage = localStorage.getItem(ID);
     const selectedDrink = data?.find((drink) => drink.id === id);
-    console.log("inside selected", selectedDrink);
 
     if (!drinkFromStorage && selectedDrink) {
       const currentDrinkId = selectedDrink?.id;
@@ -44,9 +41,9 @@ export default function DrinkPage({ params }: DrinkPageProps) {
       if (drinkFromStorage !== selectedDrink.id) {
         const currentDrinkId = selectedDrink?.id;
         saveToLocalStorage(currentDrinkId);
+        dispatch(fetchDrinksData({ searchType: ID, searchTerm: id }));
       }
     } else if (drinkFromStorage && !selectedDrink) {
-      console.log("Searhcing by ID");
       dispatch(fetchDrinksData({ searchType: ID, searchTerm: id }));
     }
   }, [dispatch]);
@@ -74,7 +71,10 @@ export default function DrinkPage({ params }: DrinkPageProps) {
                     <ul>
                       {selectedDrink.ingredients.map((ingredient, index) => (
                         <li key={index}>
-                          {selectedDrink.ingredientsAmount[index]} - {ingredient}
+                          {selectedDrink.ingredientsAmount[index]} -{" "}
+                          <Link className={styles["drink__link"]} href={`/`} onClick={() => localStorage.setItem("searchTerm", ingredient)}>
+                            {ingredient}
+                          </Link>
                         </li>
                       ))}
                     </ul>

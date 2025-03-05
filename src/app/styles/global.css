@@ -88,6 +88,15 @@ a {
   font-family: var(--font-secondary);
 }
 
+a {
+  color: var(--color-accent);
+}
+
+a:hover,
+a:focus {
+  color: var(--color-primary);
+}
+
 .content-grid {
   --padding-inline: 1rem;
   --content-max-width: 900px;

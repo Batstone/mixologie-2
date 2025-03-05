@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useAppDispatch } from "../lib/redux/hooks";
 
 import Input from "./Input";
@@ -7,6 +7,8 @@ import Button from "./Button";
 
 import { searchTypes } from "../../constants";
 import { fetchDrinksData } from "../lib/redux/thunks/fetchDrinksData";
+
+import { INGREDIENT } from "@/constants";
 
 import styles from "../styles/Form.module.css";
 
@@ -22,15 +24,31 @@ export default function Form() {
     updatePlaceholderText(value === "Name" ? "Enter Cocktail Name" : "Enter Ingredient Name");
   };
 
-  const handleSubmit = function (e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const handleSubmit = function () {
     if (searchTerm.trim()) {
+      console.log("fetch triggered", searchType, searchTerm);
       dispatch(fetchDrinksData({ searchType, searchTerm }));
     }
   };
 
+  const checkForSearchTerm = function () {
+    const searchTerm = localStorage.getItem("searchTerm");
+    if (searchTerm) {
+      console.log("we have search term", searchTerm);
+      updateSearchterm(searchTerm);
+      updateSearchType(searchTypes[1]);
+      handleSubmit();
+    }
+  };
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={styles.form}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+    >
       <fieldset className={styles["form__fieldset"]}>
         <legend className="sr-only">Search for Cocktail or Ingredient</legend>
         <div className={styles.form__element}>

@@ -19,6 +19,7 @@ export const fetchDrinksData = createAsyncThunk<
         url = API_INGREDIENT_URL;
         break;
       case ID:
+        console.log("ID SEARCH THUNK");
         url = API_ID_URL;
         break;
     }

@@ -22,8 +22,8 @@ export default function Home() {
             <Form />
           </div>
         </div>
-        {loading && <p>Loading...</p>}
 
+        {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
 
         {data.length !== 0 && (
