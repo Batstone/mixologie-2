@@ -18,7 +18,6 @@ export default function Form() {
   const [searchTerm, updateSearchterm] = useState<string>("");
 
   const handleSearchTypeChange = function (value: string) {
-    console.log("change", value);
     updateSearchType(value);
     updatePlaceholderText(value === "Name" ? "Enter Cocktail Name" : "Enter Ingredient Name");
   };

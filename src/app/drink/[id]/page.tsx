@@ -35,6 +35,7 @@ export default function DrinkPage({ params }: DrinkPageProps) {
   useEffect(() => {
     const drinkFromStorage = localStorage.getItem(ID);
     const selectedDrink = data?.find((drink) => drink.id === id);
+    console.log("inside selected", selectedDrink);
 
     if (!drinkFromStorage && selectedDrink) {
       const currentDrinkId = selectedDrink?.id;
@@ -45,6 +46,7 @@ export default function DrinkPage({ params }: DrinkPageProps) {
         saveToLocalStorage(currentDrinkId);
       }
     } else if (drinkFromStorage && !selectedDrink) {
+      console.log("Searhcing by ID");
       dispatch(fetchDrinksData({ searchType: ID, searchTerm: id }));
     }
   }, [dispatch]);

@@ -28,9 +28,7 @@ const initialState: DrinkState = {
 export const drinkSlice = createSlice({
   name: "search",
   initialState,
-  reducers: {
-    setDrinkData: (state) => {},
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchDrinksData.pending, (state) => {
@@ -39,8 +37,7 @@ export const drinkSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDrinksData.fulfilled, (state, action) => {
-        console.log("fetch drinksss", action.payload);
-
+        console.log("ID Search?", action.payload.drinks);
         const drinks: Drink[] = action.payload.drinks.map((drink: any) => {
           const ingredients = Object.keys(drink)
             .filter((key) => key.startsWith("strIngredient") && drink[key] !== null)

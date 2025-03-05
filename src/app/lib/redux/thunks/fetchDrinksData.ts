@@ -11,17 +11,17 @@ export const fetchDrinksData = createAsyncThunk<
 >("drinks/fetchDrinksData", async ({ searchType, searchTerm }, thunkAPI) => {
   try {
     let url: string | undefined;
-
-    if (searchType === NAME) {
-      url = API_NAME_URL;
-    } else if (searchType === INGREDIENT) {
-      url = API_INGREDIENT_URL;
-    } else if (searchType === ID) {
-      url = API_ID_URL;
+    switch (searchType) {
+      case NAME:
+        url = API_NAME_URL;
+        break;
+      case INGREDIENT:
+        url = API_INGREDIENT_URL;
+        break;
+      case ID:
+        url = API_ID_URL;
+        break;
     }
-
-    console.log(`${url}${searchTerm}`);
-
     const response = await fetch(`${url}${searchTerm}`);
 
     if (!response.ok) {
