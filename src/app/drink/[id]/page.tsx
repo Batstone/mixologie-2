@@ -6,7 +6,7 @@ import { fetchDrinksData } from "@/app/lib/redux/thunks/fetchDrinksData";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { ID } from "@/constants";
+import { ID, DRINK } from "@/constants";
 
 import Header from "@/app/components/Header";
 
@@ -26,14 +26,14 @@ export default function DrinkPage({ params }: DrinkPageProps) {
   const [storedDrink, setStoredDrink] = useState<string | null>(null);
 
   function saveToLocalStorage(drink: string) {
-    localStorage.setItem("id", id);
+    localStorage.setItem(ID, id);
     setStoredDrink(drink);
   }
 
-  localStorage.setItem("Drink", id);
+  localStorage.setItem(DRINK, id);
 
   useEffect(() => {
-    const drinkFromStorage = localStorage.getItem("id");
+    const drinkFromStorage = localStorage.getItem(ID);
     const selectedDrink = data?.find((drink) => drink.id === id);
 
     if (!drinkFromStorage && selectedDrink) {
@@ -49,42 +49,44 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     }
   }, [dispatch]);
 
-  // CHange selected drink below to just user the userState value that I will add
+  // Change selected drink below to just user the userState value that I will add
   const selectedDrink = data?.find((drink) => drink.id === id);
 
-  console.log("data", data);
+  console.log("selected", selectedDrink);
 
   return (
     <>
       <Header />
-      <div className={`content-grid ${styles["drink"]}`}>
-        <div className={styles["drink__container"]}>
-          <h2>{selectedDrink?.name}</h2>
-          {selectedDrink && (
-            <>
-              <div className={styles["drink__image"]}>
-                <Image src={selectedDrink.img} alt={selectedDrink.name} fill />
-              </div>
-              <div className={styles["drink__text"]}>
-                <div className={styles["drink__ingredients"]}>
-                  <h3>Ingredients:</h3>
-                  <ul>
-                    {selectedDrink.ingredients.map((ingredient, index) => (
-                      <li key={index}>
-                        {selectedDrink.ingredientsAmount[index]} - {ingredient}
-                      </li>
-                    ))}
-                  </ul>
+      <main>
+        <div className={`content-grid ${styles["drink"]}`}>
+          <div className={styles["drink__container"]}>
+            <h2>{selectedDrink?.name}</h2>
+            {selectedDrink && (
+              <>
+                <div className={styles["drink__image"]}>
+                  <Image src={selectedDrink.img} alt={selectedDrink.name} fill />
                 </div>
-                <div className={styles["drink__instructions"]}>
-                  <h3>Instructions:</h3>
-                  <p>{selectedDrink.instructions}</p>
+                <div className={styles["drink__text"]}>
+                  <div className={styles["drink__ingredients"]}>
+                    <h3>Ingredients:</h3>
+                    <ul>
+                      {selectedDrink.ingredients.map((ingredient, index) => (
+                        <li key={index}>
+                          {selectedDrink.ingredientsAmount[index]} - {ingredient}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={styles["drink__instructions"]}>
+                    <h3>Instructions:</h3>
+                    <p>{selectedDrink.instructions}</p>
+                  </div>
                 </div>
-              </div>
-            </>
-          )}
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

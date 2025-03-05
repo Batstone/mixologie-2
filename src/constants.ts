@@ -1,6 +1,8 @@
 export const NAME = "Name";
 export const INGREDIENT = "Ingredient";
 export const ID = "ID";
+export const DRINK = "Drink";
+export const MINIMUM_PAGE_LENGTH = 10;
 
 export const searchTypes = [NAME, INGREDIENT];
 
