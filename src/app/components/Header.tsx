@@ -19,8 +19,8 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link className={styles["header__nav-link"]} href="/about">
-              Login
+            <Link className={styles["header__nav-link"]} href="/favorites">
+              Favorites
             </Link>
           </li>
           <li></li>

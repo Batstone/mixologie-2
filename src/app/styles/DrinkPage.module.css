@@ -4,12 +4,40 @@
 
 .drink__container {
   display: grid;
-  padding-block: 1.8em;
+  padding-block-end: 3em;
   padding-inline: 1.8em;
   background-color: var(--color-primary-dark);
   max-width: 35rem;
   margin-inline: auto;
   border-radius: 1em;
+}
+
+.drink__favorites {
+  position: relative;
+  top: 75%;
+  display: inline-block;
+  margin-inline-start: auto;
+}
+
+.drink__button {
+  background: transparent;
+  border: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.drink__button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.drink__favorites svg {
+  fill: #fff;
+  width: 35px;
+  height: 35px;
+}
+
+.drink__button--favorite svg {
+  fill: var(--color-accent);
 }
 
 .drink__container h2 {
