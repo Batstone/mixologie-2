@@ -14,7 +14,7 @@
 
 .drink__favorites {
   position: relative;
-  top: 75%;
+  top: 50%;
   display: inline-block;
   margin-inline-start: auto;
 }
@@ -45,13 +45,34 @@
   color: var(--color-accent);
   font-family: var(--font-secondary);
   text-align: center;
+  width: 80%;
+  margin-inline: auto;
 }
 
 .drink__container h3 {
   font-size: 1.4rem;
   color: var(--color-accent);
   font-family: var(--font-secondary);
-  margin-block-start: 1.6rem;
+  margin-block-start: 2rem;
+}
+
+.drink__ingredients ul {
+  text-align: center;
+}
+
+.drink__ingredients ul,
+.drink__instructions p {
+  margin-block-start: 1rem;
+}
+
+.drink__ingredients li,
+.drink__instructions p {
+  font-size: 1.2rem;
+}
+
+.drink__instructions p {
+  width: 80%;
+  margin-inline-start: 2em;
 }
 
 .drink__image {
@@ -60,26 +81,10 @@
   min-width: 15rem;
   height: auto;
   aspect-ratio: 1 / 1;
-  margin-block-start: 1em;
+  margin-block-start: 2rem;
   width: 100%;
 }
 
 .drink__image img {
   border-radius: 1em;
-}
-
-.drink__text {
-  width: 80%;
-}
-
-.drink__ingredients ul,
-.drink__instructions p {
-  margin-block-start: 0.5rem;
-  position: relative;
-  left: 5%;
-}
-
-.drink__ingredients li,
-.drink__instructions p {
-  font-size: 1.2rem;
 }

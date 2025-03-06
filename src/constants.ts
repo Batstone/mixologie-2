@@ -3,6 +3,7 @@ export const INGREDIENT = "Ingredient";
 export const ID = "ID";
 export const DRINK = "Drink";
 export const MINIMUM_PAGE_LENGTH = 10;
+export const FAVORITE_DRINKS = "FavoriteDrinks";
 
 export const searchTypes = [NAME, INGREDIENT];
 
