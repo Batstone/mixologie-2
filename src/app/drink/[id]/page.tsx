@@ -5,7 +5,7 @@ import { fetchDrinksData } from "@/app/lib/redux/thunks/fetchDrinksData";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { ID, FAVORITE_DRINKS } from "@/constants";
+import { ID, FAVORITE_DRINKS, SAVE_RECIPE_FAVORITE, REMOVE_RECIPTE_FAVORITE } from "@/constants";
 
 import Header from "@/app/components/Header";
 
@@ -31,7 +31,7 @@ export default function DrinkPage({ params }: DrinkPageProps) {
 
   const [storedDrink, setStoredDrink] = useState<string | null>(null);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
-  const [screenReaderText, setScreenReaderText] = useState("Save recipe to favorites");
+  const [screenReaderText, setScreenReaderText] = useState(SAVE_RECIPE_FAVORITE);
 
   function handleFavoriteChange(name: string, id: string) {
     setIsFavorite(!isFavorite);
@@ -40,14 +40,14 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     let text;
 
     if (isFavorite) {
-      text = "Save recipe to favorites";
+      text = SAVE_RECIPE_FAVORITE;
 
       if (currentFavorites) {
         currentFavorites = Object.fromEntries(Object.entries(currentFavorites).filter(([key]) => key !== id));
         localStorage.setItem(FAVORITE_DRINKS, JSON.stringify(currentFavorites));
       }
     } else {
-      text = "Remove recipe from favorites";
+      text = REMOVE_RECIPTE_FAVORITE;
 
       if (currentFavorites) {
         const favorites = {
@@ -118,7 +118,7 @@ export default function DrinkPage({ params }: DrinkPageProps) {
                     <ul>
                       {selectedDrink.ingredients.map((ingredient, index) => (
                         <li key={index}>
-                          {`${selectedDrink.ingredientsAmount[index]} - `}
+                          {selectedDrink.ingredientsAmount?.[index] && `${selectedDrink.ingredientsAmount[index]} - `}
                           <Link className={styles["drink__link"]} href={`/`} onClick={() => localStorage.setItem("searchTerm", ingredient)}>
                             {ingredient}
                           </Link>

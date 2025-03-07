@@ -14,7 +14,7 @@
 
 .drink__favorites {
   position: relative;
-  top: 50%;
+  top: 65%;
   display: inline-block;
   margin-inline-start: auto;
 }
@@ -32,8 +32,8 @@
 
 .drink__favorites svg {
   fill: #fff;
-  width: 2.188rem;
-  height: 2.188rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .drink__button--favorite svg {
@@ -64,13 +64,16 @@
   top: 0.4rem;
   left: 4%;
   content: "";
-  width: 7.813rem;
+  width: 8rem;
   height: 0.125rem;
   background-color: var(--color-accent);
 }
 
 .drink__ingredients ul {
   text-align: center;
+}
+.drink__ingredients li:not(:first-of-type) {
+  margin-block-start: 0.2rem;
 }
 
 .drink__ingredients ul,
