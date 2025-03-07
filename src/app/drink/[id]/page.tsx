@@ -129,6 +129,7 @@ export default function DrinkPage({ params }: DrinkPageProps) {
                   <div className={styles["drink__instructions"]}>
                     <h3>Instructions:</h3>
                     <p>{selectedDrink.instructions}</p>
+                    <p>Enjoy!</p>
                   </div>
                   <div className={styles["drink__image"]}>
                     <Image src={selectedDrink.img} alt={selectedDrink.name} fill />

@@ -1,5 +1,5 @@
 .drink {
-  margin-block-start: 2.5rem;
+  margin-block-start: 2rem;
 }
 
 .drink__container {
@@ -32,8 +32,8 @@
 
 .drink__favorites svg {
   fill: #fff;
-  width: 35px;
-  height: 35px;
+  width: 2.188rem;
+  height: 2.188rem;
 }
 
 .drink__button--favorite svg {
@@ -41,12 +41,14 @@
 }
 
 .drink__container h2 {
+  position: relative;
   font-size: 2rem;
   color: var(--color-accent);
   font-family: var(--font-secondary);
   text-align: center;
-  width: 80%;
+  width: 75%;
   margin-inline: auto;
+  top: 0.125rem;
 }
 
 .drink__container h3 {
@@ -56,13 +58,24 @@
   margin-block-start: 2rem;
 }
 
+.drink__container h3:after {
+  display: block;
+  position: relative;
+  top: 0.4rem;
+  left: 4%;
+  content: "";
+  width: 7.813rem;
+  height: 0.125rem;
+  background-color: var(--color-accent);
+}
+
 .drink__ingredients ul {
   text-align: center;
 }
 
 .drink__ingredients ul,
 .drink__instructions p {
-  margin-block-start: 1rem;
+  margin-block-start: 2rem;
 }
 
 .drink__ingredients li,
@@ -73,6 +86,14 @@
 .drink__instructions p {
   width: 80%;
   margin-inline-start: 2em;
+}
+
+.drink__instructions p:last-of-type {
+  text-align: center;
+  color: var(--color-accent);
+  margin-block-start: 1rem;
+  margin-inline: 0;
+  width: 100%;
 }
 
 .drink__image {
