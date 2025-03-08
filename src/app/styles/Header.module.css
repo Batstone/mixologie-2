@@ -40,3 +40,19 @@
   font-size: 1.5rem;
   text-decoration: none;
 }
+
+.header a {
+  color: var(--color-primary);
+  transition: 0.2s;
+}
+
+.header a:hover,
+.header a:focus {
+  border-bottom: 2px solid var(--color-primary);
+  transform: scale(1.1);
+}
+
+.header a[aria-current="page"] {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}

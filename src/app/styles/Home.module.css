@@ -20,3 +20,7 @@
   margin-block-start: 3rem;
   margin-inline-start: 2rem;
 }
+
+.home__search-results-term {
+  color: var(--color-accent);
+}

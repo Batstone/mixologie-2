@@ -31,19 +31,6 @@ export default function Form() {
     }
   };
 
-  const checkForSearchTerm = function () {
-    const searchTerm = localStorage.getItem("searchTerm");
-    if (searchTerm) {
-      updateSearchterm(searchTerm);
-      updateSearchType(INGREDIENT);
-      handleSubmit();
-    }
-  };
-
-  useEffect(function () {
-    checkForSearchTerm();
-  }, []);
-
   return (
     <form
       className={styles.form}

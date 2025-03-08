@@ -13,14 +13,16 @@ export interface Drink {
 }
 
 // Define a type for the slice state
-interface DrinkState {
+interface DrinkSearchState {
   data: Drink[];
+  searchTerm: string;
   loading: boolean;
   error: string | null;
 }
 
-const initialState: DrinkState = {
+const initialState: DrinkSearchState = {
   data: [],
+  searchTerm: "",
   loading: false,
   error: null,
 };
@@ -37,7 +39,6 @@ export const drinkSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDrinksData.fulfilled, (state, action) => {
-        console.log("ID Search SLICE", action.payload.drinks);
         const drinks: Drink[] = action.payload.drinks.map((drink: any) => {
           const ingredients = Object.keys(drink)
             .filter((key) => key.startsWith("strIngredient") && drink[key] !== null)
@@ -61,7 +62,7 @@ export const drinkSlice = createSlice({
 
         state.loading = false;
         state.data = drinks;
-        console.log("state", state.data);
+        state.searchTerm = action.payload.searchTerm;
       })
       .addCase(fetchDrinksData.rejected, (state, action) => {
         console.log("rejected");
@@ -70,34 +71,6 @@ export const drinkSlice = createSlice({
         state.error = action.payload?.error || "Something went wrong";
         console.log("error", state.error);
       });
-    /*
-      .addCase(fetchDrinkDetails.pending, (state) => {
-        console.log("details loading");
-        state.loading = true;
-        state.error = null;
-      })
-
-      .addCase(fetchDrinkDetails.fulfilled, (state, action) => {
-        console.log("details fulfilled");
-        const drinks: Drink[] = action.payload.drinks.map((drink: any) => ({
-          name: drink.strDrink,
-          instructions: drink.strInstructions,
-          glass: drink.strGlass,
-          id: drink.idDrink,
-        }));
-
-        state.loading = false;
-        state.data = drinks;
-        console.log("state", state.data);
-      })
-      .addCase(fetchDrinkDetails.rejected, (state, action) => {
-        console.log("details rejected");
-
-        state.loading = false;
-        state.error = action.payload?.error || "Something went wrong";
-        console.log("error", state.error);
-      });
-      */
   },
 });
 

@@ -3,7 +3,13 @@ import Image from "next/image";
 
 import styles from "../styles/Header.module.css";
 
-export default function Header() {
+import { SEARCH, FAVORITES } from "@/constants";
+
+interface HeaderProps {
+  currentPage: string;
+}
+
+export default function Header({ currentPage }: HeaderProps) {
   return (
     <header className={`${styles.header}`}>
       <div className={`${styles["header__logo-container"]}`}>
@@ -14,12 +20,12 @@ export default function Header() {
       <nav className={styles["header__nav"]}>
         <ul className={styles["header__nav-list"]}>
           <li>
-            <Link className={styles["header__nav-link"]} href="/">
-              Home
+            <Link className={styles["header__nav-link"]} href="/" {...(currentPage === SEARCH ? { "aria-current": "page" } : {})}>
+              Search
             </Link>
           </li>
           <li>
-            <Link className={styles["header__nav-link"]} href="/favorites">
+            <Link className={styles["header__nav-link"]} href="/favorites" {...(currentPage === FAVORITES ? { "aria-current": "page" } : {})}>
               Favorites
             </Link>
           </li>

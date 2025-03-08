@@ -7,16 +7,16 @@ import Form from "./components/Form";
 import DrinkList from "./components/DrinkList";
 import Footer from "./components/Footer";
 
+import { SEARCH } from "@/constants";
+
 import styles from "./styles/Home.module.css";
 
 export default function Home() {
-  const { data, loading, error } = useAppSelector((state) => state.drink);
-
-  console.log("data change");
+  const { data, searchTerm, loading, error } = useAppSelector((state) => state.drink);
 
   return (
     <div className="content-grid">
-      <Header />
+      <Header currentPage={SEARCH} />
       <main>
         <div className={styles.home__hero}>
           <h2 className={styles["home__sub-heading"]}>Everything You Need to Craft The Perfect Cocktail.</h2>
@@ -30,7 +30,9 @@ export default function Home() {
 
         {data.length !== 0 && (
           <div className={styles["home__search-results"]}>
-            <h2 className={styles["home__search-results-title"]}>Search Results ({data.length}):</h2>
+            <h2 className={styles["home__search-results-title"]}>
+              Search Results ({data.length}), <span className={styles["home__search-results-term"]}>{searchTerm}:</span>
+            </h2>
             <DrinkList drinks={data} />
           </div>
         )}

@@ -4,8 +4,9 @@ import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
 import { fetchDrinksData } from "@/app/lib/redux/thunks/fetchDrinksData";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-import { ID, FAVORITE_DRINKS, SAVE_RECIPE_FAVORITE, REMOVE_RECIPTE_FAVORITE } from "@/constants";
+import { FAVORITES, INGREDIENT, ID, FAVORITE_DRINKS, SAVE_RECIPE_FAVORITE, REMOVE_RECIPTE_FAVORITE } from "@/constants";
 
 import Header from "@/app/components/Header";
 
@@ -92,9 +93,21 @@ export default function DrinkPage({ params }: DrinkPageProps) {
   // Change selected drink below to just user the userState value that I will add
   const selectedDrink = data?.find((drink) => drink.id === id);
 
+  const router = useRouter();
+
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>, searchTerm: string) {
+    e.preventDefault();
+
+    console.log("ingredient", searchTerm);
+
+    dispatch(fetchDrinksData({ searchType: INGREDIENT, searchTerm }));
+
+    router.push("/");
+  }
+
   return (
     <>
-      <Header />
+      <Header currentPage={FAVORITES} />
       <main>
         <div className={`content-grid ${styles["drink"]}`}>
           <div className={styles["drink__container"]}>
@@ -119,7 +132,7 @@ export default function DrinkPage({ params }: DrinkPageProps) {
                       {selectedDrink.ingredients.map((ingredient, index) => (
                         <li key={index}>
                           {selectedDrink.ingredientsAmount?.[index] && `${selectedDrink.ingredientsAmount[index]} - `}
-                          <Link className={styles["drink__link"]} href={`/`} onClick={() => localStorage.setItem("searchTerm", ingredient)}>
+                          <Link className={styles["drink__link"]} href={`/`} onClick={(e) => handleClick(e, ingredient)}>
                             {ingredient}
                           </Link>
                         </li>
