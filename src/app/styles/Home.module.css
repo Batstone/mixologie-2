@@ -8,7 +8,7 @@
   border: 1px solid rgba(0, 0, 0, 0.3);
   padding-inline: 2em;
   padding-block: 3em;
-  top: 5%;
+  top: 2%;
 }
 
 .home__sub-heading {
@@ -19,7 +19,7 @@
 
 .home__search-results-title {
   font-size: 1.8rem;
-  margin-block-start: 3rem;
+  margin-block-start: 5rem;
   margin-inline-start: 2rem;
 }
 
