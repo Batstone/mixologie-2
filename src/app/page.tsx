@@ -15,7 +15,7 @@ export default function Home() {
   const { data, searchTerm, loading, error } = useAppSelector((state) => state.drink);
 
   return (
-    <div className="content-grid">
+    <>
       <Header currentPage={SEARCH} />
       <main>
         <div className={styles.home__hero}>
@@ -25,8 +25,8 @@ export default function Home() {
           </div>
         </div>
 
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error}</p>}
+        {loading && <p className={styles.home__text}>Loading...</p>}
+        {error && <p className={styles.home__text}>{error}</p>}
 
         {data.length !== 0 && (
           <div className={styles["home__search-results"]}>
@@ -38,6 +38,6 @@ export default function Home() {
         )}
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

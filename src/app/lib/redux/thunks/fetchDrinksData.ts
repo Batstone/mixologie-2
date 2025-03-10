@@ -17,7 +17,6 @@ export const fetchDrinksData = createAsyncThunk<
         url = API_NAME_URL;
         break;
       case INGREDIENT:
-        console.log("INGREDIENT HERE");
         url = API_INGREDIENT_URL;
         break;
       case ID:
@@ -31,6 +30,10 @@ export const fetchDrinksData = createAsyncThunk<
     }
 
     const data = await response.json();
+
+    if (!data.drinks) {
+      throw new Error("No drinks were found. Try searching again.");
+    }
 
     return {
       drinks: data.drinks,

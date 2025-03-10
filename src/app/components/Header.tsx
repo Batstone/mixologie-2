@@ -12,7 +12,11 @@ interface HeaderProps {
 export default function Header({ currentPage }: HeaderProps) {
   return (
     <header className={`${styles.header}`}>
-      <div className={`${styles["header__logo-container"]}`}>
+      <div
+        className={`${styles["header__logo-container"]} ${
+          currentPage === SEARCH ? styles["header__logo-container--home"] : styles["header__logo-container--search"]
+        }`}
+      >
         <h1>
           <Image src="/images/logo.png" alt="Logo" fill />
         </h1>

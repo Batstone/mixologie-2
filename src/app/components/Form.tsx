@@ -15,9 +15,10 @@ import styles from "../styles/Form.module.css";
 export default function Form() {
   const dispatch = useAppDispatch();
 
-  const [searchType, updateSearchType] = useState<string>(searchTypes[0]);
-  const [placeholderText, updatePlaceholderText] = useState<string>("Enter Cocktail Name");
-  const [searchTerm, updateSearchterm] = useState<string>("");
+  const [searchType, updateSearchType] = useState(searchTypes[0]);
+  const [placeholderText, updatePlaceholderText] = useState("Enter Cocktail Name");
+  const [searchTerm, updateSearchterm] = useState("");
+  const [error, updateError] = useState(false);
 
   const handleSearchTypeChange = function (value: string) {
     updateSearchType(value);
@@ -26,8 +27,10 @@ export default function Form() {
 
   const handleSubmit = function () {
     if (searchTerm.trim()) {
-      console.log("fetch triggered", searchType, searchTerm);
       dispatch(fetchDrinksData({ searchType, searchTerm }));
+      updateError(false);
+    } else {
+      updateError(true);
     }
   };
 
@@ -55,6 +58,7 @@ export default function Form() {
         </div>
         <div className={styles.form__element}>
           <Input
+            required={true}
             labelFor="searchInput"
             labelText={`${searchType}:`}
             id="searchInput"
@@ -65,8 +69,11 @@ export default function Form() {
             onChange={(e) => updateSearchterm(e.target.value)}
           />
         </div>
+        <div className={styles.error__container} aria-live="assertive">
+          {error && <p>- Please {placeholderText}</p>}
+        </div>
 
-        <Button type="submit" className={styles.form__button}>
+        <Button className={styles.form__button} onClick={handleSubmit}>
           Find Cocktail
         </Button>
       </fieldset>

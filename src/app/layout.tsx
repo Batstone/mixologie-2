@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ovo.variable} ${raleway.variable}`}>
       <Provider store={store}>
-        <body>{children}</body>
+        <body className="content-grid">{children}</body>
       </Provider>
     </html>
   );

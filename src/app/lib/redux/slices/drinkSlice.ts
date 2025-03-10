@@ -34,7 +34,6 @@ export const drinkSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchDrinksData.pending, (state) => {
-        console.log("loading");
         state.loading = true;
         state.error = null;
       })
@@ -58,15 +57,11 @@ export const drinkSlice = createSlice({
           };
         });
 
-        console.log("fulfilled");
-
         state.loading = false;
         state.data = drinks;
         state.searchTerm = action.payload.searchTerm;
       })
       .addCase(fetchDrinksData.rejected, (state, action) => {
-        console.log("rejected");
-
         state.loading = false;
         state.error = action.payload?.error || "Something went wrong";
         console.log("error", state.error);

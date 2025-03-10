@@ -32,8 +32,8 @@
 
 .drink__favorites svg {
   fill: #fff;
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 .drink__button--favorite svg {
@@ -101,12 +101,13 @@
 
 .drink__image {
   position: relative;
-  justify-self: center;
   min-width: 15rem;
   height: auto;
   aspect-ratio: 1 / 1;
   margin-block-start: 2rem;
-  width: 100%;
+  width: 80%;
+  min-width: 12.5rem;
+  margin-inline: auto;
 }
 
 .drink__image img {

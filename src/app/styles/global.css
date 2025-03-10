@@ -100,34 +100,18 @@ a:focus {
 .content-grid {
   --padding-inline: 1rem;
   --content-max-width: 900px;
-  --breakout-max-width: 1200px;
-
-  --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
 
   display: grid;
   grid-template-columns:
     [full-width-start] minmax(var(--padding-inline), 1fr)
-    [breakout-start] minmax(0, var(--breakout-size))
     [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width))
     [content-end]
-    minmax(0, var(--breakout-size)) [breakout-end]
     minmax(var(--padding-inline), 1fr) [full-width-end];
 }
 
 .content-grid > :not(.breakout, .full-width),
 .full-width > :not(.breakout, .full-width) {
   grid-column: content;
-}
-
-.content-grid > .breakout {
-  grid-column: breakout;
-}
-
-.content-grid > .full-width {
-  grid-column: full-width;
-
-  display: grid;
-  grid-template-columns: inherit;
 }
 
 :root {
@@ -166,23 +150,6 @@ body {
   outline: 2px dotted var(--color-primary);
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  background-color: var(--color-secondary-dark);
-  color: var(--color-accent);
-  width: 100%;
-  text-align: center;
-  padding-block: 1.5em;
-}
-
-footer a {
-  display: block;
-  color: var(--color-primary);
-  text-decoration: none;
-  margin-block-start: 0.3rem;
-}
-
-footer {
-  display: none;
+main {
+  min-height: 80vh;
 }

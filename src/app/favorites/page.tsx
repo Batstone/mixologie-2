@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Header from "../components/Header";
 import styles from "@/app/styles/FavoritesPage.module.css";
 
-import { FAVORITE_DRINKS } from "@/constants";
+import { FAVORITE_DRINKS, FAVORITES } from "@/constants";
 import Link from "next/link";
 
 interface LocalStorageDrink {
@@ -25,7 +25,7 @@ export default function FavoritesPage() {
   }, []);
   return (
     <>
-      <Header />
+      <Header currentPage={FAVORITES} />
       <div className={styles["favorites"]}>
         {currentFavorites && (
           <ul>

@@ -4,11 +4,11 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-export default function Input({ labelFor, labelText, id, type, onChange, className, placeholder }: InputProps) {
+export default function Input({ labelFor, labelText, id, type, onChange, className, placeholder, required }: InputProps) {
   return (
     <>
       <label htmlFor={labelFor}>{labelText}</label>
-      <input id={id} type={type} onChange={onChange} className={`${className}`} placeholder={placeholder}></input>
+      <input id={id} type={type} onChange={onChange} className={`${className}`} placeholder={placeholder} required={required}></input>
     </>
   );
 }
