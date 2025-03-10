@@ -14,7 +14,11 @@ export default function Pager({ numberOfPages, currentPage, changePage }: PagerP
     <nav aria-label="Drink results pager" className={styles["pager-nav"]}>
       <ul className={styles["pager-list"]}>
         <li>
-          <Button className={`${styles["pager-button"]} ${styles["pager-arrow"]}`} onClick={(e) => changePage(currentPage - 1)}>
+          <Button
+            className={`${styles["pager-button"]} ${styles["pager-arrow"]}`}
+            onClick={(e) => changePage(currentPage - 1)}
+            disabled={currentPage === 1 ? true : false}
+          >
             <span aria-hidden="true">&laquo;</span>
             <span className="sr-only">Go to previous page</span>
           </Button>
@@ -30,6 +34,7 @@ export default function Pager({ numberOfPages, currentPage, changePage }: PagerP
                 onClick={() => changePage(i + 1)}
                 aria-current={isActive ? "page" : undefined}
               >
+                {isActive ? <span className="sr-only"> Page </span> : <span className="sr-only">Go to page </span>}
                 {i + 1}
               </Button>
             </li>
@@ -37,7 +42,11 @@ export default function Pager({ numberOfPages, currentPage, changePage }: PagerP
         })}
 
         <li>
-          <Button className={`${styles["pager-button"]} ${styles["pager-arrow"]}`} onClick={(e) => changePage(currentPage + 1)}>
+          <Button
+            className={`${styles["pager-button"]} ${styles["pager-arrow"]}`}
+            onClick={(e) => changePage(currentPage + 1)}
+            disabled={currentPage === numberOfPages ? true : false}
+          >
             <span aria-hidden="true">&raquo;</span>
             <span className="sr-only">Go to next page</span>
           </Button>

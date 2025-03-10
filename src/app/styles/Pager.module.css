@@ -39,6 +39,11 @@
   font-weight: bold;
 }
 
+.pager-arrow[disabled] {
+  background-color: var(--color-primary-dark);
+  color: var(--color-primary);
+}
+
 .pager-arrow:hover,
 .pager-arrow:focus {
   background-color: var(--color-primary-dark);
