@@ -70,8 +70,6 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     }
   }, [dispatch, id, data]);
 
-  useEffect(function () {});
-
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, ingredient: string) => {
     e.preventDefault();
     dispatch(fetchDrinksData({ searchType: INGREDIENT, searchTerm: ingredient }));

@@ -30,9 +30,7 @@ export default function Home() {
 
         {data.length !== 0 && (
           <div className={styles["home__search-results"]}>
-            <h2 className={styles["home__search-results-title"]}>
-              Search Results ({data.length}), <span className={styles["home__search-results-term"]}>{searchTerm}:</span>
-            </h2>
+            <h2 className={styles["home__search-results-title"]}>Search Results ({data.length}):</h2>
             <DrinkList drinks={data} />
           </div>
         )}

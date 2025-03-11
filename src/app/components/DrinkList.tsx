@@ -21,7 +21,6 @@ export default function DrinkList({ drinks }: DrinkListProps) {
 
   const getPagedDrinks = () => {
     if (drinks.length <= MINIMUM_PAGE_LENGTH) return drinks;
-
     const indexOfLastDrink = currentPage * MINIMUM_PAGE_LENGTH;
     const indexOfFirstDrink = indexOfLastDrink - MINIMUM_PAGE_LENGTH;
 

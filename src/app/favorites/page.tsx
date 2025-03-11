@@ -19,21 +19,18 @@ export default function FavoritesPage() {
 
   const [favorites, setFavorites] = useState<LocalStorageDrink[]>([]);
 
-  // Toggle favorite status and update local storage
   const removeFavorite = (id: string) => {
     const currentFavorites: { [key: string]: LocalStorageDrink } = JSON.parse(localStorage.getItem(FAVORITE_DRINKS) || "{}");
     const updatedFavorites = { ...currentFavorites };
 
     delete updatedFavorites[id];
 
-    // Update the local storage and the state
     localStorage.setItem(FAVORITE_DRINKS, JSON.stringify(updatedFavorites));
     setFavorites(Object.values(updatedFavorites));
   };
 
   useEffect(function () {
     currentFavorites = JSON.parse(localStorage.getItem(FAVORITE_DRINKS) || "{}");
-    console.log("current FAVS", currentFavorites);
 
     if (currentFavorites) {
       setFavorites(Object.values(currentFavorites));

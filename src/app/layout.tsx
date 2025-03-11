@@ -21,13 +21,6 @@ const raleway = Raleway({
   variable: "--font-secondary",
 });
 
-/*
-export const metadata: Metadata = {
-  title: "Mixologie",
-  description: "Craft the Perfect Cocktail",
-};
-*/
-
 export default function RootLayout({
   children,
 }: Readonly<{

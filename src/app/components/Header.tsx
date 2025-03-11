@@ -4,10 +4,16 @@ import Image from "next/image";
 import styles from "../styles/Header.module.css";
 
 import { SEARCH, FAVORITES } from "@/constants";
+import { Metadata } from "next";
 
 interface HeaderProps {
   currentPage: string;
 }
+
+export const metadata: Metadata = {
+  title: "Mixologie",
+  description: "Craft the Perfect Cocktail",
+};
 
 export default function Header({ currentPage }: HeaderProps) {
   return (
