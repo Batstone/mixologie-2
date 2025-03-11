@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className={styles["footer"]}>
       <p>© 2021 Mixologie</p>
       <Link href="https://www.adambatstone.dev">
-        <span>Visit the portfolio of developer, Adam Batstone. </span>Batstone Development
+        <span className="sr-only">Visit the portfolio of developer, Adam Batstone. </span>Batstone Development
       </Link>
     </footer>
   );

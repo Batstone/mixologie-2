@@ -1,0 +1,40 @@
+.favorites__container {
+  background: rgba(0, 0, 0, 0.955);
+  border-radius: 1em;
+  box-shadow: 0 0.25em 1.875em rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.1px);
+  -webkit-backdrop-filter: blur(3.1px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding-block: 5rem;
+}
+
+.favorites__container h2 {
+  text-align: center;
+}
+
+.favorites__container h3 {
+  display: inline-block;
+  margin-block: 0.8rem;
+  margin-inline-end: 0.3rem;
+}
+
+.favorites__list {
+  margin-block-start: 2rem;
+  text-align: center;
+}
+
+.favorites__button {
+  background: transparent;
+  border: none;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.favorites__button svg {
+  fill: var(--color-accent);
+  width: 1.6rem;
+  height: 1.6rem;
+}

@@ -55,6 +55,9 @@ export default function DrinkPage({ params }: DrinkPageProps) {
   // Check if the drink exists in local storage or if it's a new drink
   useEffect(() => {
     const drinkFromStorage = localStorage.getItem(ID);
+
+    if (drinkFromStorage) setIsFavorite(true);
+
     const selectedDrink = data?.find((drink) => drink.id === id);
 
     if (selectedDrink) {
@@ -67,7 +70,8 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     }
   }, [dispatch, id, data]);
 
-  // Handle click to search by ingredient
+  useEffect(function () {});
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, ingredient: string) => {
     e.preventDefault();
     dispatch(fetchDrinksData({ searchType: INGREDIENT, searchTerm: ingredient }));

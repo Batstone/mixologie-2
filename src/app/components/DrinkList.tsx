@@ -7,7 +7,6 @@ import { Drink } from "../lib/redux/slices/drinkSlice";
 import { MINIMUM_PAGE_LENGTH } from "@/constants";
 
 import styles from "../styles/DrinkList.module.css";
-import { current } from "@reduxjs/toolkit";
 
 interface DrinkListProps {
   drinks: Drink[];
