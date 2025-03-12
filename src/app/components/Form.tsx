@@ -8,8 +8,6 @@ import Button from "./Button";
 import { searchTypes } from "../../constants";
 import { fetchDrinksData } from "../lib/redux/thunks/fetchDrinksData";
 
-import { INGREDIENT } from "@/constants";
-
 import styles from "../styles/Form.module.css";
 
 export default function Form() {
