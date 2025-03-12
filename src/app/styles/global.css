@@ -139,12 +139,23 @@ fieldset {
 
 body {
   color: var(--color-primary);
-  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.7))), url(../../../public/images/banner.jpg);
+  background-image: url(../../../public/images/banner.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50%;
   overflow-x: hidden;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 *:focus {

@@ -10,6 +10,7 @@ import Header from "@/app/components/Header";
 import Button from "@/app/components/Button";
 import Link from "next/link";
 import styles from "../../styles/DrinkPage.module.css";
+import Footer from "@/app/components/Footer";
 
 interface DrinkPageProps {
   params: { id: string };
@@ -133,6 +134,7 @@ export default function DrinkPage({ params }: DrinkPageProps) {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
