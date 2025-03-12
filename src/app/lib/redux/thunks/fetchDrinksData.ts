@@ -3,7 +3,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Drink } from "../slices/drinkSlice";
 
 import { API_NAME_URL, API_INGREDIENT_URL, API_ID_URL, NAME, INGREDIENT, ID } from "@/constants";
-import { Tenali_Ramakrishna } from "next/font/google";
 
 export const fetchDrinksData = createAsyncThunk<
   { drinks: Array<Drink>; searchTerm: string },

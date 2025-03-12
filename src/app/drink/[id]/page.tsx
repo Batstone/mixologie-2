@@ -24,6 +24,7 @@ interface LocalStorageDrink {
 export default function DrinkPage({ params }: DrinkPageProps) {
   const { id } = params;
   const { data, loading, error } = useAppSelector((state) => state.drink);
+
   const dispatch = useAppDispatch();
   const router = useRouter();
 
