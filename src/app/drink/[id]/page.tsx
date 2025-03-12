@@ -29,7 +29,12 @@ export default function DrinkPage({ params }: DrinkPageProps) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [screenReaderText, setScreenReaderText] = useState(SAVE_RECIPE_FAVORITE);
 
-  // Toggle favorite status and update local storage
+  const checkIfFavorite = () => {
+    const favoriteDrinks = JSON.parse(localStorage.getItem(FAVORITE_DRINKS) || "{}");
+    const drinkFromStorage = favoriteDrinks[id];
+    if (drinkFromStorage) setIsFavorite(true);
+  };
+
   const toggleFavorite = (name: string, id: string) => {
     const currentFavorites: { [key: string]: LocalStorageDrink } = JSON.parse(localStorage.getItem(FAVORITE_DRINKS) || "{}");
     const updatedFavorites = { ...currentFavorites };
@@ -52,23 +57,24 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     localStorage.setItem(ID, drinkId);
   };
 
-  // Check if the drink exists in local storage or if it's a new drink
   useEffect(() => {
-    const drinkFromStorage = localStorage.getItem(ID);
+    checkIfFavorite();
 
-    if (drinkFromStorage) setIsFavorite(true);
+    // Check if drink has been previously viewed. Will provide data for page on refresh
+    const checkIfDrinkPreviouslyViewed = localStorage.getItem(ID);
 
+    // Check if drink selection exists in data
     const selectedDrink = data?.find((drink) => drink.id === id);
 
     if (selectedDrink) {
-      if (drinkFromStorage !== selectedDrink.id) {
+      if (checkIfDrinkPreviouslyViewed !== selectedDrink.id) {
         saveToLocalStorage(selectedDrink.id);
         dispatch(fetchDrinksData({ searchType: ID, searchTerm: id }));
       }
-    } else if (drinkFromStorage) {
+    } else if (checkIfDrinkPreviouslyViewed) {
       dispatch(fetchDrinksData({ searchType: ID, searchTerm: id }));
     }
-  }, [dispatch, id, data]);
+  }, [dispatch, id]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, ingredient: string) => {
     e.preventDefault();

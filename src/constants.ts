@@ -6,6 +6,8 @@ export const MINIMUM_PAGE_LENGTH = 10;
 export const FAVORITE_DRINKS = "FavoriteDrinks";
 export const SAVE_RECIPE_FAVORITE = "Save recipe to favorites";
 export const REMOVE_RECIPTE_FAVORITE = "Remove recipe from favorites";
+export const INGREDIENTS_TYPE = "strIngredient";
+export const INGREDIENTS_AMOUNT = "strMeasure";
 
 export const SEARCH = "Search";
 export const FAVORITES = "Favorites";

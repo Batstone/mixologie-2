@@ -9,7 +9,6 @@ interface PagerProps {
 }
 
 export default function Pager({ numberOfPages, currentPage, changePage }: PagerProps) {
-  console.log("current page", currentPage);
   return (
     <nav aria-label="Drink results pager" className={styles["pager-nav"]}>
       <ul className={styles["pager-list"]}>

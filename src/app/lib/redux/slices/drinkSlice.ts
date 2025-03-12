@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { fetchDrinksData } from "../thunks/fetchDrinksData";
 
+import { SEARCH, INGREDIENTS_TYPE, INGREDIENTS_AMOUNT } from "@/constants";
+
 export interface Drink {
   name: string;
   instructions: string;
@@ -28,7 +30,7 @@ const initialState: DrinkSearchState = {
 };
 
 export const drinkSlice = createSlice({
-  name: "search",
+  name: SEARCH,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -40,10 +42,10 @@ export const drinkSlice = createSlice({
       .addCase(fetchDrinksData.fulfilled, (state, action) => {
         const drinks: Drink[] = action.payload.drinks.map((drink: any) => {
           const ingredients = Object.keys(drink)
-            .filter((key) => key.startsWith("strIngredient") && drink[key] !== null)
+            .filter((key) => key.startsWith(INGREDIENTS_TYPE) && drink[key] !== null)
             .map((key) => drink[key]);
           const ingredientsAmount = Object.keys(drink)
-            .filter((key) => key.startsWith("strMeasure") && drink[key] !== null)
+            .filter((key) => key.startsWith(INGREDIENTS_AMOUNT) && drink[key] !== null)
             .map((key) => drink[key]);
 
           return {
