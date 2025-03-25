@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import { useAppDispatch } from "../lib/redux/hooks";
 
 import Input from "./Input";
