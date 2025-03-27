@@ -1,6 +1,10 @@
+<p align="center">
+  <img src="/public/images/logo.png" alt="Mixologie Logo" width="300"/>
+</p>
+
 # Mixologie - Cocktail App
 
-[Mixologie]([docs/README.md](https://mixologie-2.vercel.app/))
+[Mixologie](<[docs/README.md](https://mixologie-2.vercel.app/)>)
 
 Welcome to **Mixologie**, a cocktail app that allows users to discover, explore, and get recipes for a variety of cocktails. Built with Next.js, this app fetches cocktail data from the Cocktail API and presents it in a sleek, user-friendly interface.
 
@@ -33,3 +37,4 @@ To get started with the project locally, follow the steps below:
 
    ```bash
    git clone https://github.com/yourusername/mixologie.git
+   ```
