@@ -2,7 +2,7 @@
   <img src="/public/images/logo.png" alt="Mixologie Logo" width="300"/>
 </p>
 
-# Mixologie - Cocktail App
+<h1 align="center">Mixologie - Cocktail App</h1>
 
 [Mixologie](<[docs/README.md](https://mixologie-2.vercel.app/)>)
 
