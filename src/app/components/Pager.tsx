@@ -31,7 +31,7 @@ export default function Pager({ numberOfPages, currentPage, changePage }: PagerP
               <Button
                 className={`${styles["pager-button"]} ${isActive ? styles["pager-button-active"] : styles["pager-button-inactive"]}`}
                 onClick={() => changePage(i + 1)}
-                aria-current={isActive ? "page" : undefined}
+                aria-current={isActive ? "true" : undefined}
               >
                 {isActive ? <span className="sr-only"> Page </span> : <span className="sr-only">Go to page </span>}
                 {i + 1}
