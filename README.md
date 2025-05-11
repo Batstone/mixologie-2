@@ -4,7 +4,9 @@
 
 <h1 align="center">Mixologie - Cocktail App</h1>
 
-[Mixologie](<[docs/README.md](https://mixologie-2.vercel.app/)>)
+<p align="center">
+  <a href="https://mixologie-2.vercel.app/">Visit the Live Site</a>
+</p>
 
 Welcome to **Mixologie**, a cocktail app that allows users to discover, explore, and get recipes for a variety of cocktails. Built with Next.js, this app fetches cocktail data from the Cocktail API and presents it in a sleek, user-friendly interface.
 
