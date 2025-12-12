@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
 import { fetchDrinksData } from "@/app/lib/redux/thunks/fetchDrinksData";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FAVORITES, INGREDIENT, ID, FAVORITE_DRINKS, SAVE_RECIPE_FAVORITE, REMOVE_RECIPTE_FAVORITE } from "@/constants";
@@ -30,6 +30,7 @@ export default function DrinkPage({ params }: DrinkPageProps) {
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [screenReaderText, setScreenReaderText] = useState(SAVE_RECIPE_FAVORITE);
+  const fetchingRef = useRef<string | null>(null);
 
   const checkIfFavorite = () => {
     const favoriteDrinks = JSON.parse(localStorage.getItem(FAVORITE_DRINKS) || "{}");
@@ -59,24 +60,28 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     localStorage.setItem(ID, drinkId);
   };
 
+  // Reset fetching ref when ID changes
+  useEffect(() => {
+    fetchingRef.current = null;
+  }, [id]);
+
+  // Fetch drink data when ID changes or when data changes but drink is missing
   useEffect(() => {
     checkIfFavorite();
-
-    // Check if drink has been previously viewed. Will provide data for page on refresh
-    const checkIfDrinkPreviouslyViewed = localStorage.getItem(ID);
+    saveToLocalStorage(id);
 
     // Check if drink selection exists in data
     const selectedDrink = data?.find((drink) => drink.id === id);
 
-    if (selectedDrink) {
-      if (checkIfDrinkPreviouslyViewed !== selectedDrink.id) {
-        saveToLocalStorage(selectedDrink.id);
-        dispatch(fetchDrinksData({ searchType: ID, searchTerm: id }));
-      }
-    } else if (checkIfDrinkPreviouslyViewed) {
+    // Fetch if drink is not in data, not currently loading, and we haven't already initiated a fetch for this ID
+    if (!selectedDrink && !loading && fetchingRef.current !== id) {
+      fetchingRef.current = id;
       dispatch(fetchDrinksData({ searchType: ID, searchTerm: id }));
+    } else if (selectedDrink) {
+      // Drink found, reset fetching ref
+      fetchingRef.current = null;
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, data, loading]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, ingredient: string) => {
     e.preventDefault();
