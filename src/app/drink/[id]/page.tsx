@@ -60,12 +60,17 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     localStorage.setItem(ID, drinkId);
   };
 
+  // Check if drink has complete data (ingredients and instructions)
+  const hasCompleteData = (drink: any) => {
+    return drink && drink.ingredients && drink.ingredients.length > 0 && drink.instructions && drink.instructions.trim().length > 0;
+  };
+
   // Reset fetching ref when ID changes
   useEffect(() => {
     fetchingRef.current = null;
   }, [id]);
 
-  // Fetch drink data when ID changes or when data changes but drink is missing
+  // Fetch drink data when ID changes or when data changes but drink is missing or incomplete
   useEffect(() => {
     checkIfFavorite();
     saveToLocalStorage(id);
@@ -73,12 +78,15 @@ export default function DrinkPage({ params }: DrinkPageProps) {
     // Check if drink selection exists in data
     const selectedDrink = data?.find((drink) => drink.id === id);
 
-    // Fetch if drink is not in data, not currently loading, and we haven't already initiated a fetch for this ID
-    if (!selectedDrink && !loading && fetchingRef.current !== id) {
+    // Check if we need to fetch: drink not found OR drink found but incomplete data
+    const needsFetch = !selectedDrink || !hasCompleteData(selectedDrink);
+
+    // Fetch if needed, not currently loading, and we haven't already initiated a fetch for this ID
+    if (needsFetch && !loading && fetchingRef.current !== id) {
       fetchingRef.current = id;
       dispatch(fetchDrinksData({ searchType: ID, searchTerm: id }));
-    } else if (selectedDrink) {
-      // Drink found, reset fetching ref
+    } else if (selectedDrink && hasCompleteData(selectedDrink)) {
+      // Drink found with complete data, reset fetching ref
       fetchingRef.current = null;
     }
   }, [dispatch, id, data, loading]);
